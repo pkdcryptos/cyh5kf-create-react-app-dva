@@ -1,0 +1,100 @@
+:global {
+  .progress-wrap {
+    width: 100%;
+    display: inline-block;
+    overflow: hidden;
+    font-size: 12px;
+  }
+  .progress-title {
+    vertical-align: middle;
+    float: left;
+    padding-right: 10px;
+  }
+  .progress-title-right {
+    float: right;
+    width: 50px;
+    padding: 0 10px;
+  }
+  .progress-over {
+    overflow: hidden;
+  }
+  .progress-outer {
+    width: 100%;
+    padding-left: 20px;
+    overflow: hidden;
+    .progress {
+      width: 100%;
+      height: 100%;
+      margin-right: calc(-2em - 8px);
+      padding-right: calc(2em + 8px);
+      border: 1px solid #ffffff;
+      -webkit-appearance: none;
+    }
+
+    ::-ms-fill {
+      background: deeppink;
+    }
+
+    ::-moz-progress-bar {
+      background: deeppink;
+    }
+
+    ::-webkit-progress-bar {
+      background: #e5e5e5;
+    }
+
+    ::-webkit-progress-value {
+      background: deeppink;
+    }
+    .progress-bar {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      vertical-align: middle;
+      background-color: #f5f5f5;
+      border-radius: 100px;
+    }
+    .progress-number {
+      width: calc(100% - 50px);
+      height: 100%;
+      float: left;
+      background-color: #e5e5e5;
+      &.top-text {
+        background-color: transparent;
+      }
+    }
+    .progress-bg {
+      height: 100%;
+      position: relative;
+      background-color: deeppink;
+      -webkit-transition: all .4s cubic-bezier(.08, .82, .17, 1) 0s;
+      transition: all .4s cubic-bezier(.08, .82, .17, 1) 0s;
+      &.top-text {
+        background-color: transparent;
+      }
+    }
+    .progress-text {
+      display: inline-block;
+      width: 2em;
+      margin-top: -0.9em;
+      margin-left: 0.3em;
+      color: rgba(0,0,0,0.45);
+      font-size: 0.8em;
+      line-height: 1;
+      white-space: nowrap;
+      text-align: left;
+      vertical-align: middle;
+      word-break: normal;
+      font-size: 14px;
+    }
+    .progress-top-text {
+      display: inline-block;
+      float: right;
+      margin-right: -30px;
+    }
+  }
+  .height-20 {
+    height: 20px;
+    line-height: 20px;
+  }
+}
