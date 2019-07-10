@@ -36,7 +36,7 @@ class Sider extends PureComponent {
 
         <div className={styles.menuContainer}>
           <ScrollBar
-            option={{
+            options={{
               // Disabled horizontal scrolling, https://github.com/utatti/perfect-scrollbar#options
               suppressScrollX: true,
             }}
