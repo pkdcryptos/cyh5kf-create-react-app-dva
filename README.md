@@ -1,68 +1,115 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center"><img width="100" src="https://segmentfault.com/img/bVZwRf?w=516&h=457" /></p>
 
-## Available Scripts
+# React技术栈脚手架
 
-In the project directory, you can run:
+**适用范围：这是一套中后台前端解决方案，该框架集成了react开发常用技术栈，并借鉴了antd-admin的框架代码和布局UI（[https://github.com/zuiidea/antd-admin](https://github.com/zuiidea/antd-admin)），但并未采用蚂蚁金服的umi前端框架，保持框架的灵活度。**
 
-### `npm start`
+### 框架集成的配置
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+> webpack版本为4.26.1，并且对webpack相关的第三方插件进行了兼容处理
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+> 基于 [create-react-app][4] 进行改造，增加了redux、react-router、immutable等
 
-### `npm test`
+> 使用dva.js处理异步请求
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+> babel最新配置
 
-### `npm run build`
+> UI框架使用的是antd design
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+> 统一封装axios请求函数
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+> Mock 数据，本地数据调试
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### 客户端渲染
 
-### `npm run eject`
+本项目是客户端渲染版本，登录账号 admin， 密码 12345
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**1、 安装依赖包**
+```
+npm install 或cnpm install 或 yarn
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**2、运行demo**
+ ```
+ npm start
+ ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+**3、打包发布** 
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```
+npm run build
+```
 
-## Learn More
+**4、打包依赖关系分析** 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+npm run analyze
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**5、打开mock本地接口调试（需全局安装nodemon，自动重启）** 
 
-### Code Splitting
+```
+npm run mock
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+**6、你可以尝试serve来启动服务器。**
 
-### Analyzing the Bundle Size
+```
+npm run serve
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+**文件夹介绍**
 
-### Making a Progressive Web App
+目录结构：
+```
+├── config                  #webpack自定义配置
+├── deploy                  #部署脚本
+├── dist/                   # 默认build输出目录
+├── mock                    #mock本地接口调试
+├── public/                 # 静态资源文件目录
+├── scripts/                # webpack启动文件
+├── src/                    # 源码目录
+│ ├── components/           # 组件目录
+│ ├── layouts/              # 布局目录
+│ ├── pages/                # 页面组件目录
+│ ├── routes/               # 路由目录
+│ ├── services/             # 数据接口目录
+│ │ ├── api.js              # 接口配置
+│ │ └── index.js            # 接口输出
+│ ├── themes/               # 项目样式目录
+│ │ ├── default.less        # 样式变量
+│ │ ├── index.less          # 全局样式
+│ │ ├── mixin.less          # 样式函数
+│ │ └── vars.less           # 样式变量及函数
+│ ├── utils/                # 工具函数目录
+│ │ ├── config.js           # 项目配置
+│ │ ├── constant.js         # 静态常量
+│ │ ├── flexible.js         # 屏幕适配
+│ │ ├── index.js            # 工具函数
+│ │ ├── request.js          # 异步请求函数(axios)
+│ │ └── theme.js            # 项目需要在js中使用到样式变量
+│ ├── app.less              # 全局样式
+│ ├── index.js            # react入口文件
+├── .gitignore              # Git忽略文件配置
+├── package.json            #node相关环境的配置文件
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+#### 修改前端本地服务器端口号
 
-### Advanced Configuration
+在scripts/start.js中
+```
+const DEFAULT_PORT = parseInt(process.env.PORT, 10) || 3011;
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+#### 开启代理服务器
 
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+在src/setupProxy.js中
+```
+//你可以修改target，使其指向你的目标服务器。
+app.use(
+    proxy('/api/v1/*', {
+        target: 'http://localhost:3000',
+        secure: false
+    })
+)
+```
